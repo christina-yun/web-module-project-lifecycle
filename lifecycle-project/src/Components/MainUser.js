@@ -3,17 +3,19 @@ import React from 'react';
 class MainUser extends React.Component {
 
     render() {
-        
         return (
             <div>
                 <div className='avatar'>
-                    <img src={this.props.mainUser.avatar_url} alt='profile picture'/>
+                    <img src={this.props.mainUser.userInfo.avatar_url} alt='avatar'/>
                 </div>
-                <h3>Name: {this.props.mainUser.name}</h3>
-                <p> Bio: {this.props.mainUser.bio}</p>
-                <p> Profile: {this.props.mainUser.login}</p>
-                <p>Followers: {this.props.mainUser.followers}</p>
-                <p>Following: {this.props.mainUser.following}</p>
+                <div className='card-Info'>
+                    <h3>Name: {this.props.mainUser.userInfo.name}</h3>
+                    <p> Bio: {this.props.mainUser.userInfo.bio}</p>
+                    <p> Profile: {this.props.mainUser.userInfo.login}</p>
+                    <p>Followers: {this.props.mainUser.userInfo.followers}</p>
+                    <p>Following: {this.props.mainUser.userInfo.following}</p>
+                </div>
+                
             </div>
         )
     }

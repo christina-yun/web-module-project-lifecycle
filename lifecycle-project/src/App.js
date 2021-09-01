@@ -8,25 +8,31 @@ class App extends React.Component {
 
   state = {
     userInfo: {},
-    followerInfo: []
+    followers: []
   }
 
-  componentDidMount(){
-    axios.get('https://api.github.com/users/christina-yun')
+  getUser = (login) => {
+    axios.get(`https://api.github.com/users/${login}`)
     .then(resp => {
-      console.log(resp.data)
-      this.setState(resp.data)
+      this.setState({
+        ...this.state,
+        userInfo: resp.data})
     })
     .catch(err => {
       console.error(err);
     })
   }
 
+  componentDidMount(){
+    this.getUser('christina-yun')
+  }
+
   render() {
+    
     return (
       <div className="App">
-        <h1>Who knows whom</h1>
-        <FindUserForm mainUser={this.state}/>
+        <h1>Who Knows Whom</h1>
+        <FindUserForm mainUser={this.state} getUser={this.getUser} />
         <MainUser mainUser={this.state}/>
         <Followers />
       </div>
